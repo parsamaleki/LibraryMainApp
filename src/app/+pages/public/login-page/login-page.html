@@ -1,0 +1,125 @@
+<div class="login-background">
+  <mat-card class="login-card" appearance="outlined">
+    <div class="login-logo">
+    <img mat-card-image src="/images/LibraryLogoBgLess.png" class="logo-img" >
+    </div>
+<mat-card-header class="header-center">
+  <mat-card-title class="title-bold">خوش آمدید.</mat-card-title>
+  <!-- <mat-card-subtitle class="subtitle-bold">برای ورود به سامانه نام کاربری و رمز عبور خود را وارد کنید.</mat-card-subtitle> -->
+</mat-card-header>
+    <!-- <img mat-card-image src="/images/NeonLibraryImage2.jpg" alt="Photo of a Shiba Inu"> -->
+    <mat-card-content>
+      <!-- <div class="input-group">
+      <p>
+        <mat-form-field class="full-width-top" appearance="fill">
+          <mat-label>نام کاربری</mat-label>
+          <input [(ngModel)]="username"   matInput >
+          <mat-icon matSuffix>person</mat-icon>
+          <mat-hint></mat-hint>
+        </mat-form-field>
+
+        <mat-form-field  class="full-width-bottom" appearance="fill" >
+          <mat-label>کلمه عبور</mat-label>
+          <input [(ngModel)]="password" [ngStyle]="{'border-bottom-left-radius': '20px'}" type="password" matInput >
+          <mat-icon matSuffix>lock</mat-icon>
+          <mat-hint></mat-hint>
+        </mat-form-field>
+        </p>
+        </div> -->
+<div class="signin-content" [class.has-password]="hasPassword">
+
+  <div class="account-name">
+    <div class="form-cell-wrapper form-textbox icon-wrapper">
+      <mat-icon class="input-icon">person</mat-icon>
+      <input
+        type="text"
+        id="email_input"
+        class="form-textbox-input form-textbox-entered"
+        name="username"
+        (keydown.enter)="merged ? onSubmit() : onContinue()" 
+        [(ngModel)]="username"
+        (ngModelChange)="onUsernameChange($event)"
+        autocomplete="username"
+        placeholder="نام کاربری"
+      />
+
+      <!-- <span class="form-textbox-label">نام کاربری</span> -->
+    </div>
+  </div>
+  @if(hasPassword){ 
+  <div class="password" >
+    <div class="form-cell-wrapper form-textbox icon-wrapper">
+      <mat-icon class="input-icon">lock</mat-icon>
+      <input
+        type="password"
+        id="password_input"
+        class="form-textbox-input"
+        name="password"
+        (keydown.enter)="merged ? onSubmit() : onContinue()" 
+        [(ngModel)]="password"
+        #passwordInput
+        autocomplete="current-password"
+        placeholder="کلمه عبور"
+      />
+      <!-- <span class="form-textbox-label">کلمه عبور</span> -->
+    </div>
+  </div>
+  }
+  <div class="signin-content__footer signin-content__footer--has-content">
+    <div class="signin-content__footer__items">
+
+      <!-- <div class="si-remember-password">
+        <div class="form-checkbox">
+          <input type="checkbox" id="remember-me" class="form-checkbox-input" />
+          <label for="remember-me" class="form-label">
+            <span class="form-checkbox-indicator"></span>
+            مرا به خاطر بسپار
+          </label>
+        </div>
+      </div> -->
+
+      <!-- <div class="signin-content__footer__items__right">
+        <div class="si-forgot-password">
+          <a href="#" class="si-link">پسورد خود را فراموش کرده اید؟</a>
+        </div>
+      </div> -->
+
+    </div>
+  </div>
+@if(hasPassword){ 
+<div  class="login-error" role="alert" aria-live="polite">
+  {{ loginError }}
+</div>
+}
+<mat-card-actions>
+  <div class="buttons-wrapper">
+    <button
+      mat-flat-button
+      [disabled]="!username || username.trim() === ''"
+      class="continue-button"
+      [class.login-button]="merged"
+      (click)="merged ? onSubmit() : onContinue()"
+    >
+      {{ merged ? 'ورود' : 'ادامه' }}
+    </button>
+    @if (!merged){ 
+    <button
+      mat-flat-button
+      color="primary"
+      class="another-way-button"
+      (click)="onAlternate()"
+    >
+      روش های جایگزین
+    </button>
+    }
+  </div>
+</mat-card-actions>
+
+
+</div>
+      
+
+    </mat-card-content>
+
+  </mat-card>
+</div>

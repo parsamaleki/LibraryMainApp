@@ -1,0 +1,308 @@
+// login-page.component.scss
+
+// ---------- variables ----------
+$card-width: 420px;
+$card-radius: 18px;
+$card-bg: rgba(255, 255, 255, 0.06);
+$card-text-color: #ffffff;
+$input-bg: rgba(255, 255, 255, 0.10);
+$input-placeholder: rgba(255, 255, 255, 0.75);
+$outine-stroke: rgba(255, 255, 255, 0.06);
+$outline-stroke-focused: rgba(255, 255, 255, 0.08);
+$login-button-bg: #000000;
+$login-button-color: #ffffff;
+
+// ---------- layout ----------
+.login-background {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('/images/signin-glass.jpg') no-repeat center center / cover;
+  overflow: hidden;
+
+}
+
+// ---------- card ----------
+.login-card {
+  position: relative;
+  z-index: 1;
+  width: 420px;
+  max-width: 92%;
+  padding: 2.4rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: none;
+  
+  // عنوان‌ها
+
+  // لوگو
+  .login-logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.6rem;
+  }
+.logo-img {
+  width: 120px;     /* سایز دلخواه */
+  height: auto;     /* نسبت درست */
+  object-fit: contain;
+}
+//----------- Header ---------------
+.header-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 30px;
+}
+.title-bold { font-weight: 700; color: #fff; }
+.subtitle-bold { font-weight: 200; color: #fff; }
+
+
+
+// ---------- form fields ----------
+
+// }
+//   .full-width-top{
+//       width: 100%;
+//       margin-top: 35px;
+//       margin-bottom: -20px;
+//       border-top-left-radius: 12px;
+//       border-top-right-radius: 12px;
+      
+//   }
+//   .full-width-bottom{
+//       width: 100%;
+//       margin-top:0px;
+//       border-bottom-left-radius: 12px;
+//       border-bottom-right-radius: 12px;
+//   }
+// .top-input{
+//     border-top-left-radius: 12px;
+//     border-top-right-radius: 12px;
+// }
+// .bottom-input{
+//     border-bottom-left-radius: 12px;
+//     border-bottom-right-radius: 12px;
+// }
+//------------ Exclusive form design---------
+/* ---------- کانتینر کلی ---------- */
+.signin-content {
+  color: #222;
+  line-height: 1.2;
+  margin-top: 50px;
+}
+
+.signin-content * { box-sizing: border-box; }
+
+.form-cell-wrapper {
+  position: relative;
+  // background: rgba(255, 255, 255, 0.06);
+}
+.icon-wrapper {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+  right: 10px;      
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #e6e6e6a6;
+  pointer-events: none;
+}
+
+/* جا برای آیکون داخل اینپوت */
+.icon-wrapper .form-textbox-input {
+  padding-right: 40px; /* فضای آیکون */
+}
+
+
+.form-textbox-input {
+  width: 100%;
+  display: block;
+  padding: 14px 12px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.10);
+  color: #f3f1f1;
+}
+
+.form-textbox-input::placeholder {
+  color: #e6e6e6dc;
+  opacity: 1;
+}
+
+.form-textbox-label {
+  position: absolute;
+  right:  6px;
+  top: 2px;
+  transform-origin: left top;
+  transition: transform .15s ease, color .15s ease, top .15s ease, font-size .15s ease;
+  color: rgb(255, 255, 255);
+  pointer-events: none;
+  font-size: 15px;
+  font-weight: bold;
+}
+.form-textbox-input:focus + .form-textbox-label {
+  transform: translateY(-10px) scale(.88);
+  top: 10px;
+  color: rgba(0,0,0,0.65);
+}
+
+.account-name .form-cell-wrapper {
+  border: 2px solid #6e6e7300;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+  border-radius: 8px 8px 8px 8px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.form-cell-wrapper {
+  border: 2px solid #6e6e7300;
+  border-radius: 0 0 8px 8px;
+  padding: 0;
+  margin-top: 0; 
+}
+
+.password .form-cell-wrapper {
+  margin-top: -1px; 
+  box-shadow: 0 3px 8px  rgba(0,0,0,0.25);
+
+}
+
+
+// .account-name:focus-within .form-cell-wrapper {
+//   border-color: #0a66ff;
+//   box-shadow: 0 0 0 4px rgba(10,102,255,0.06);
+// }
+
+// .password:focus-within .form-cell-wrapper {
+//   border-color: #0a66ff;
+//   box-shadow: 0 0 0 4px rgba(10,102,255,0.06);
+// }
+
+.signin-content__footer__items {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  gap: 12px;
+}
+
+.form-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #333;
+}
+
+.si-link {
+  color: #0a66ff;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+@media (max-width: 480px) {
+  .form-textbox-input { padding: 12px 10px; font-size: 15px; }
+  .form-textbox-label { left: 10px; }
+}
+
+.buttons-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  width: 100%;
+}
+
+.continue-button {
+  width: 100% !important;
+  height: 40px !important;
+  border-radius:10px !important;
+  background: #2575fc;  
+  // color: $login-button-color !important;
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  margin-top: 20px;
+}
+.continue-button:hover {
+  background: linear-gradient(to right, #ff6a00, #ff2a68, #6a11cb, #2575fc);  cursor: pointer;
+  cursor: pointer;
+}
+
+.another-way-button {
+  width: 100% !important;
+  height: 40px !important;
+  border-radius:10px !important;
+  background:  #2575fc  !important;
+  color: $login-button-color !important;
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  margin-top: 20px;
+}
+
+.another-way-button:hover {
+  background-color: #000000;
+  cursor: pointer;
+}
+
+
+.login-button {
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  background: #0a66ff;
+  color: #fff;
+  font-weight: 700;
+}
+.login-button:hover{
+  background: linear-gradient(to right, #ff6a00, #ff2a68, #6a11cb, #2575fc);
+}
+
+.continue-button[disabled] {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.signin-content.has-password .account-name .form-cell-wrapper {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  // border-bottom: none !important;
+}
+
+.signin-content.has-password .password .form-cell-wrapper {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  margin-top: -1px; 
+}
+
+.signin-content:not(.has-password) .account-name .form-cell-wrapper {
+  border-radius: 8px !important; 
+}
+
+.signin-content.has-password .account-name .form-cell-wrapper {
+  border-top-left-radius: 8px !important;
+  border-top-right-radius: 8px !important;
+}
+
+.login-error {
+  color: #c52828;
+  margin-top: 8px;
+  font-size: 13px;
+}
+
+}
+
+
+
+

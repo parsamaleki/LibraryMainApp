@@ -1,0 +1,87 @@
+@if (!(isHandset$ | async)) {
+  <aside class="permanent-sidenav" role="navigation" aria-label="Permanent navigation">
+    <nav class="permanent-icons">
+      <button mat-icon-button aria-label="home" (click)="openFromAside(drawer)"><mat-icon>home</mat-icon></button>
+      <button mat-icon-button aria-label="members" (click)="openFromAside(drawer)"><mat-icon>person_outline</mat-icon></button>
+      <button mat-icon-button aria-label="loans" (click)="openFromAside(drawer)"><mat-icon>local_library</mat-icon></button>
+      <button mat-icon-button aria-label="librarians" (click)="openFromAside(drawer)"><mat-icon>account_box</mat-icon></button>
+      <button mat-icon-button aria-label="logout" (click)="openFromAside(drawer)"><mat-icon>exit_to_app</mat-icon></button>
+    </nav>
+  </aside>
+}
+
+<mat-sidenav-container class="msc-container">
+
+  <mat-sidenav #drawer mode="over"  class="overlay-drawer" fixedInViewport>
+    <div class="icon-wraper">
+    <mat-nav-list>
+      <a mat-list-item href="#"><mat-icon>home</mat-icon><span>خانه</span></a>
+      <a mat-list-item href="#"><mat-icon>person_outline</mat-icon><span>اعضا</span></a>
+      <a mat-list-item href="#"><mat-icon>local_library</mat-icon><span>امانات</span></a>
+      <a mat-list-item href="#"><mat-icon>account_box</mat-icon><span>کتابدارن</span></a>
+      <a mat-list-item href="#"><mat-icon>exit_to_app</mat-icon><span>خروج</span></a>
+    </mat-nav-list>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="topbar">
+      <button mat-icon-button (click)="toggle(drawer)" aria-label="menu"><mat-icon>menu</mat-icon></button>
+      <span class="app-title">سامانه کتابداری کهن</span>
+      <span class="spacer"></span>
+
+      <mat-form-field appearance="outline" class="table-filter">
+        <mat-label>جستجوی کتاب</mat-label>
+        <input matInput (input)="applyFilter($event)" placeholder="عنوان، نویسنده..." />
+      <button mat-icon-button matSuffix aria-label="Clear"
+              (click)="$event.stopPropagation();">
+          <mat-icon>close</mat-icon>
+      </button>
+      </mat-form-field>
+    </mat-toolbar>
+
+    <section class="table-section">
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2">
+
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ردیف</th>
+          <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>عنوان</th>
+          <td mat-cell *matCellDef="let row"> {{row.title}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="author">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>نویسنده</th>
+          <td mat-cell *matCellDef="let row"> {{row.author}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="year">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>سال</th>
+          <td mat-cell *matCellDef="let row"> {{row.year}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>وضعیت</th>
+          <td mat-cell *matCellDef="let row">
+            <span [class.available]="row.status === 'available'" [class.borrowed]="row.status === 'borrowed'">
+              {{ row.status === 'available' ? 'موجود' : 'امانت‌داده‌شده' }}
+            </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="borrower">
+          <th mat-header-cell *matHeaderCellDef>وام‌گیرنده</th>
+          <td mat-cell *matCellDef="let row"> {{row.borrower || '—'}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </section>
+  </mat-sidenav-content>
+</mat-sidenav-container>

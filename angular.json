@@ -4,7 +4,7 @@
   "newProjectRoot": "projects",
   "projects": {
     "LibraryAppMain": {
-      "projectType": "application",
+      "projectType": "application",style
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
@@ -94,5 +94,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
