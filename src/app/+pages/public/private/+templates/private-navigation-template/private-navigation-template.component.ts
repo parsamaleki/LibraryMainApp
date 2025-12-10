@@ -21,7 +21,8 @@ import { map, shareReplay, take } from 'rxjs/operators';
     MatListModule,
     MatIconModule,
     AsyncPipe,
-  ]
+    
+]
 })
 export class PrivateNavigationTemplateComponent {
   private breakpointObserver = inject(BreakpointObserver);

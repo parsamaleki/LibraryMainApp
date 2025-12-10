@@ -30,58 +30,9 @@
       <span class="app-title">سامانه کتابداری کهن</span>
       <span class="spacer"></span>
 
-      <mat-form-field appearance="outline" class="table-filter">
-        <mat-label>جستجوی کتاب</mat-label>
-        <input matInput (input)="applyFilter($event)" placeholder="عنوان، نویسنده..." />
-      <button mat-icon-button matSuffix aria-label="Clear"
-              (click)="$event.stopPropagation();">
-          <mat-icon>close</mat-icon>
-      </button>
-      </mat-form-field>
+
     </mat-toolbar>
+         <app-book></app-book>
 
-    <section class="table-section">
-      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2">
-
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>ردیف</th>
-          <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="title">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>عنوان</th>
-          <td mat-cell *matCellDef="let row"> {{row.title}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="author">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>نویسنده</th>
-          <td mat-cell *matCellDef="let row"> {{row.author}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="year">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>سال</th>
-          <td mat-cell *matCellDef="let row"> {{row.year}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="status">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>وضعیت</th>
-          <td mat-cell *matCellDef="let row">
-            <span [class.available]="row.status === 'available'" [class.borrowed]="row.status === 'borrowed'">
-              {{ row.status === 'available' ? 'موجود' : 'امانت‌داده‌شده' }}
-            </span>
-          </td>
-        </ng-container>
-
-        <ng-container matColumnDef="borrower">
-          <th mat-header-cell *matHeaderCellDef>وام‌گیرنده</th>
-          <td mat-cell *matCellDef="let row"> {{row.borrower || '—'}} </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-
-      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-    </section>
   </mat-sidenav-content>
 </mat-sidenav-container>

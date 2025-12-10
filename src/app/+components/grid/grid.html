@@ -1,0 +1,81 @@
+<!-- <table>
+  <tr>
+    @for (item of columns; track $index) {
+      <th>{{item}}</th>
+    }
+  </tr>
+  @for ( row of data; track $index) {
+    <tr>
+      @for (col of columns; track $index) {
+        <td>{{row[col]}}</td>
+      }
+    </tr>
+  }
+</table> -->
+<!-- <mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="searchRow($event)" placeholder="Ex. ium" #input>
+</mat-form-field> -->
+@if (!data || data.length == 0) {
+  <div class="no-data">
+    <p>داده‌ای برای نمایش نداریم؟</p>
+  </div>
+}
+
+<table mat-table [dataSource]="data" class="mat-elevation-z8 grid-table" multiTemplateDataRows>
+
+  @for (col of columns; track col) {
+    <ng-container [matColumnDef]="col">
+      <th mat-header-cell *matHeaderCellDef> {{ col | titlecase }} </th>
+      <td mat-cell *matCellDef="let row"> {{ row[col] }} </td>
+    </ng-container>
+  }
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> عملیات </th>
+    <td mat-cell *matCellDef="let row" class="actions-cell">
+      <button mat-icon-button color="primary" (click)="edit(row); $event.stopPropagation()" title="ویرایش">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" (click)="remove(row); $event.stopPropagation()" title="حذف">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="expand">
+    <th mat-header-cell *matHeaderCellDef aria-label="expand">&nbsp;</th>
+    <td mat-cell *matCellDef="let row" class="expand-cell">
+      <button mat-icon-button aria-label="expand row"
+              (click)="toggle(row); $event.stopPropagation()"
+              [class.expanded]="isExpanded(row)">
+        <mat-icon>keyboard_arrow_down</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+<ng-container matColumnDef="expandedDetail">
+  <td mat-cell *matCellDef="let row" [attr.colspan]="displayedColumns.length">
+    <div class="detail-wrapper" [class.expanded]="isExpanded(row)">
+
+      @if (row.description) {
+        <div class="detail-text">
+          {{ row.description }}
+        </div>
+      } @else {
+        <pre class="detail-pre">{{ row | json }}</pre>
+      }
+
+    </div>
+  </td>
+</ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"
+      class="row"
+      [class.expanded-row]="isExpanded(row)"
+      (click)="toggle(row)">
+  </tr>
+
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+</table>

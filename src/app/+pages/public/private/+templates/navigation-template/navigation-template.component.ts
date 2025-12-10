@@ -15,28 +15,10 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { Book } from "../../../../../+components/book/book";
+// import { Book } from "../../../../../+components/book/book";
+// 
 
-export interface Book {
-  id: number;
-  title: string;
-  author: string;
-  year: number;
-  status: 'available' | 'borrowed';
-  borrower?: string | null;
-}
-
-const BOOK_DATA: Book[] = [
-  { id: 1, title: 'شاهکارهای ادبیات فارسی', author: 'حافظ', year: 1397, status: 'available' },
-  { id: 2, title: 'مبانی برنامه‌نویسی', author: 'علی رضایی', year: 1400, status: 'borrowed', borrower: 'مجتبی' },
-  { id: 3, title: 'تاریخ جهان', author: 'م. احمدی', year: 1390, status: 'available' },
-  { id: 4, title: 'علوم کامپیوتر پایه', author: 'نظامی پور', year: 1399, status: 'available' },
-  { id: 5, title: 'سیر و سفر', author: 'سارا حسینی', year: 1401, status: 'borrowed', borrower: 'زهرا' },
-  { id: 6, title: 'نقد و بررسی هنر', author: 'ک. مرادی', year: 1385, status: 'available' },
-  { id: 7, title: 'مجموعه داستان کوتاه', author: 'مهدی یوسفی', year: 1396, status: 'available' },
-  { id: 8, title: 'کتابدار حرفه‌ای', author: 'فرهاد نجفی', year: 1398, status: 'borrowed', borrower: 'علی' },
-  { id: 9, title: 'هوش مصنوعی مقدماتی', author: 'زهرا کاظمی', year: 1402, status: 'available' },
-  { id: 10, title: 'راهنمای پژوهش', author: 'دکتر نوری', year: 1388, status: 'available' }
-];
 
 @Component({
   selector: 'app-navigation-template',
@@ -53,38 +35,23 @@ const BOOK_DATA: Book[] = [
     MatInputModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
-  ],
+    MatSortModule,
+    Book
+],
   templateUrl: './navigation-template.component.html',
   styleUrls: ['./navigation-template.component.scss']
 })
-export class NavigationTemplateComponent implements AfterViewInit {
+export class NavigationTemplateComponent   {
   private bp = inject(BreakpointObserver);
 
   isHandset$: Observable<boolean> = this.bp.observe(Breakpoints.Handset)
     .pipe(map(r => r.matches), shareReplay({ bufferSize: 1, refCount: true }));
 
 
-  displayedColumns: string[] = ['id', 'title', 'author', 'year', 'status', 'borrower'];
-  dataSource = new MatTableDataSource<Book>(BOOK_DATA);
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
 
 
   toggle(drawer: MatSidenav) { drawer.toggle(); }
   openFromAside(drawer: MatSidenav) { drawer.open(); }
 
-  applyFilter(event: Event) {
-    const value = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = value.trim().toLowerCase();
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
+
 }

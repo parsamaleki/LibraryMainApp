@@ -1,0 +1,7 @@
+<app-grid
+  [data]="books"
+  [columns]="['title', 'author', 'year', 'isAvailable', 'borrower']"
+  (onEdit)="editBook($event)"
+  (onRemove)="deleteBook($event)">
+</app-grid>
+

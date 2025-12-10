@@ -4,6 +4,7 @@ import { RisponsiveSidenave } from "../+templates/risponsive-sidenave/risponsive
 import { SidenavModeExample } from "../+templates/sidenav-mode-example/sidenav-mode-example";
 import { SidenavFixedExample } from "../+templates/sidenav-fixed-example/sidenav-fixed-example";
 import { NavigationTemplateComponent } from "../+templates/navigation-template/navigation-template.component";
+// import { Book } from "../../../../+components/book/book";
   
 @Component({
   selector: 'app-home-page',
