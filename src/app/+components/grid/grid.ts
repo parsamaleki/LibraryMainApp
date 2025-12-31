@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, input, Input, Output } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from "@angular/material/icon";
@@ -14,14 +14,19 @@ import { MatButtonModule } from "@angular/material/button";
 export class Grid {
 
   @Input() data: any[] = [];  
-  @Input() columns: string[] = [];
-  @Input() showActions = true;
+  signalData=input<any[]>([]);
 
+  @Input() columns: string[] = [];
+  signalColumns = input<string[]>([])
+
+  @Input() showActions = true;
+  signalShowAction = input(true);
+  
   @Output() onEdit = new EventEmitter<any>();
   @Output() onRemove = new EventEmitter<any>();
 
   get displayedColumns(): string[] {
-    return [...this.columns, 'actions', 'expand'];
+    return [...this.signalColumns(), 'actions', 'expand'];
   }
 
   toggle(row: any) {

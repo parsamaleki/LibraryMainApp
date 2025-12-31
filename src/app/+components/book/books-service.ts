@@ -1,11 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { BookModel } from './book.model';
-
 @Injectable({
   providedIn: 'root',
 })
 export class BooksService {
-  private data: BookModel[] = [
+  private initialData: BookModel[] = [
     {
       id: 1,
       title: 'شاهکارهای ادبیات فارسی',
@@ -118,8 +117,21 @@ export class BooksService {
 
   ];
 
+  private data = signal<BookModel[]>(this.initialData);     
+
   list(){
-    return this.data;
+    return this.data();        
+  }
+
+  add(book: BookModel) {
+    const maxId = Math.max(...this.data().map(b => b.id), 0);    
+    book.id = maxId + 1;
+    book.isAvailable = book.isAvailable ?? true;
+    book.borrower = book.borrower ?? '';
+    book.symbol = book.symbol ?? '';
+    book.description = book.description ?? '';
+
+    this.data.update(list => [...list, book]);
   }
 
 }

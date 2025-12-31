@@ -1,0 +1,51 @@
+<h2 mat-dialog-title>مشخصات کتاب</h2>
+<mat-dialog-content>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>عنوان کتاب</mat-label>
+    <input matInput placeholder="عنوان کتاب" [(ngModel)]="book().title" required>
+    <mat-icon matSuffix>title</mat-icon>
+    <mat-hint>عنوان حتماً وارد شود</mat-hint>
+    <mat-error>الزامی است اما وارد نشده</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>نویسنده</mat-label>
+    <input matInput placeholder="نام نویسنده" [(ngModel)]="book().author" required>
+    <mat-icon matSuffix>person</mat-icon>
+    <mat-hint>نویسنده حتماً وارد شود</mat-hint>
+    <mat-error>الزامی است اما وارد نشده</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>سال انتشار</mat-label>
+    <input matInput placeholder="سال انتشار" [(ngModel)]="book().year" type="number" required>
+    <mat-icon matSuffix>calendar_today</mat-icon>
+    <mat-hint>سال حتماً وارد شود</mat-hint>
+    <mat-error>الزامی است اما وارد نشده</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>قرض‌گیرنده</mat-label>
+    <input matInput placeholder="نام قرض‌گیرنده" [(ngModel)]="book().borrower">
+    <mat-icon matSuffix>person_outline</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>نماد</mat-label>
+    <input matInput placeholder="نماد کتاب" [(ngModel)]="book().symbol">
+    <mat-icon matSuffix>label</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>توضیحات</mat-label>
+    <textarea matInput placeholder="توضیحات کتاب" [(ngModel)]="book().description"></textarea>
+    <mat-icon matSuffix>description</mat-icon>
+  </mat-form-field>
+
+  <mat-checkbox class="example-margin" [(ngModel)]="book().isAvailable">موجود است</mat-checkbox>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button matButton (click)="addBook()">افزودن</button>
+  <button matButton (click)="close()">انصراف</button>
+</mat-dialog-actions>
